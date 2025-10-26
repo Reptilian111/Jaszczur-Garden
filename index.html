@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ogród Jaszczura</title>
+  <style>
+    /* Zamień 'background.jpg' na ścieżkę do swojego zdjęcia lub wklej tutaj data URL (base64). */
+    :root{
+      --overlay: rgba(0,0,0,0.25);
+    }
+    html,body{
+      height:100%;
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    .bg{
+      position:fixed;
+      inset:0;
+      background-image: url('background.jpg'); /* <-- zamień to */
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      z-index:-2;
+    }
+    /* ciemna nakładka by tekst był czytelny */
+    .overlay{
+      position:fixed;
+      inset:0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
+      z-index:-1;
+    }
+    .container{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      align-items:center;
+      text-align:center;
+      padding:36px 16px;
+      box-sizing:border-box;
+      color: #fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+    h1{
+      margin:0;
+      margin-top:18px;
+      font-size: clamp(28px, 6vw, 64px);
+      letter-spacing: 1px;
+      text-transform: none;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.6);
+      background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .bottom-link{
+      margin-bottom:18px;
+    }
+    .twitch-link{
+      display:inline-block;
+      text-decoration:none;
+      padding:12px 20px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:18px;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(6px);
+      color:#fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      transition: transform .14s ease, box-shadow .14s ease;
+    }
+    .twitch-link:hover{ transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .twitch-link:active{ transform: translateY(0); }
+    .twitch-icon{
+      margin-right:10px;
+      vertical-align:middle;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
+    }
+    /* małe ekrany */
+    @media (max-width:420px){
+      .twitch-link{ font-size:16px; padding:10px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg" aria-hidden="true"></div>
+  <div class="overlay" aria-hidden="true"></div>
+
+  <main class="container" role="main">
+    <header>
+      <h1>Ogród Jaszczura</h1>
+    </header>
+
+    <!-- pusty środek strony (możesz tu dodać treść) -->
+
+    <footer class="bottom-link">
+      <!-- Zamień href na swój link do Twitcha -->
+      <a class="twitch-link" href="https://twitch.tv/yourusername" target="_blank" rel="noopener noreferrer">
+        <!-- prosty SVG ikony Twitch (możesz usunąć lub zastąpić) -->
+        <svg class="twitch-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 3v14l3-3h3l3-3h4l4-4V3H4z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+          <path d="M17 8v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M13 8v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+        Oglądaj na Twitchu
+      </a>
+    </footer>
+  </main>
+
+  <!-- Instrukcje:
+       1) Umieść swoje zdjęcie w tym samym folderze co ten plik i zmień w CSS 'background.jpg' na nazwę pliku.
+       2) Lub wstaw pełny URL do zdjęcia: url('https://.../twoje_zdjecie.jpg')
+       3) Jeśli chcesz użyć obrazu w formacie base64, wklej: url('data:image/...?base64,...')
+       4) Zmień href w linku twitch na swój kanał (np. https://twitch.tv/nazwauzytkownika).
+       5) Otwórz plik w przeglądarce, żeby zobaczyć podgląd.
+  -->
+</body>
+</html>

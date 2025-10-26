@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ogród Jaszczura</title>
   <style>
-    /* Zamień 'background.jpg' na ścieżkę do swojego zdjęcia lub wklej tutaj data URL (base64). */
     :root{
       --overlay: rgba(0,0,0,0.25);
     }
@@ -17,13 +16,12 @@
     .bg{
       position:fixed;
       inset:0;
-      background-image: url('background.jpg'); /* <-- zamień to */
+      background-image: url('background.jpg');
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
       z-index:-2;
     }
-    /* ciemna nakładka by tekst był czytelny */
     .overlay{
       position:fixed;
       inset:0;
@@ -46,14 +44,13 @@
     h1{
       margin:0;
       margin-top:18px;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      color: #fff;
       font-size: clamp(28px, 6vw, 64px);
       letter-spacing: 1px;
       text-transform: none;
-      text-shadow: 0 4px 18px rgba(0,0,0,0.6);
-      background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0.85));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      text-shadow: 0 0 8px rgba(255,255,255,0.8), 0 0 12px rgba(255,255,255,0.6);
     }
     .bottom-link{
       margin-bottom:18px;
@@ -78,7 +75,6 @@
       vertical-align:middle;
       filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
     }
-    /* małe ekrany */
     @media (max-width:420px){
       .twitch-link{ font-size:16px; padding:10px 14px; }
     }
@@ -93,12 +89,8 @@
       <h1>Ogród Jaszczura</h1>
     </header>
 
-    <!-- pusty środek strony (możesz tu dodać treść) -->
-
     <footer class="bottom-link">
-      <!-- Zamień href na swój link do Twitcha -->
-      <a class="twitch-link" href="https://twitch.tv/yourusername" target="_blank" rel="noopener noreferrer">
-        <!-- prosty SVG ikony Twitch (możesz usunąć lub zastąpić) -->
+      <a class="twitch-link" href="https://twitch.tv/reptilianin_111" target="_blank" rel="noopener noreferrer">
         <svg class="twitch-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M4 3v14l3-3h3l3-3h4l4-4V3H4z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
           <path d="M17 8v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
@@ -108,13 +100,5 @@
       </a>
     </footer>
   </main>
-
-  <!-- Instrukcje:
-       1) Umieść swoje zdjęcie w tym samym folderze co ten plik i zmień w CSS 'background.jpg' na nazwę pliku.
-       2) Lub wstaw pełny URL do zdjęcia: url('https://.../twoje_zdjecie.jpg')
-       3) Jeśli chcesz użyć obrazu w formacie base64, wklej: url('data:image/...?base64,...')
-       4) Zmień href w linku twitch na swój kanał (np. https://twitch.tv/nazwauzytkownika).
-       5) Otwórz plik w przeglądarce, żeby zobaczyć podgląd.
-  -->
 </body>
 </html>

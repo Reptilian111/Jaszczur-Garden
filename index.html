@@ -29,8 +29,7 @@
       background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
       z-index:-2;
     }
-
-    /* 🔥 Ogniska po bokach */
+    
     .fire {
       position: fixed;
       bottom: 0;
@@ -42,6 +41,7 @@
       opacity: 0.8;
       z-index: -1;
       pointer-events: none;
+      will-change: transform, opacity, filter;
     }
     .fire::before, .fire::after {
       content: "";
@@ -52,6 +52,7 @@
       filter: blur(40px);
       opacity: 0.8;
       animation: flameFlicker 1.8s infinite ease-in-out alternate;
+      will-change: transform, opacity, filter;
     }
     .fire::after {
       animation-delay: 0.6s;
@@ -101,7 +102,22 @@
       letter-spacing: 1px;
       text-transform: none;
       text-shadow: 0 0 8px rgba(255,255,255,0.8), 0 0 12px rgba(255,255,255,0.6);
+      transition: text-shadow 0.3s ease;
     }
+    h1:hover {
+      text-shadow: 0 0 12px rgba(255,255,255,0.9), 0 0 20px rgba(255,150,0,0.8);
+    }
+
+    /* 🎥 Styl wideo */
+    .center-video {
+      max-width: 90%;
+      max-height: 70vh;
+      border-radius: 16px;
+      margin: 32px 0;
+      box-shadow: 0 0 30px rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px);
+    }
+
     .bottom-link{
       margin-bottom:18px;
     }
@@ -129,6 +145,7 @@
     @media (max-width:420px){
       .twitch-link{ font-size:16px; padding:10px 14px; }
       .fire { width: 90px; height: 160px; }
+      .center-video { max-height: 50vh; }
     }
   </style>
 </head>
@@ -136,7 +153,6 @@
   <div class="bg" aria-hidden="true"></div>
   <div class="overlay" aria-hidden="true"></div>
 
-  <!-- 🔥 Ogniska po bokach -->
   <div class="fire left" aria-hidden="true"></div>
   <div class="fire right" aria-hidden="true"></div>
 
@@ -144,6 +160,13 @@
     <header>
       <h1>Ogród Jaszczura</h1>
     </header>
+
+    <!-- 🎥 Film umieszczony na środku -->
+    <video controls autoplay muted loop class="center-video">
+      <source src="/video.mp4" type="video/mp4">
+      Twoja przeglądarka nie obsługuje wideo HTML5.
+    </video>
+
     <footer class="bottom-link">
       <a class="twitch-link" href="https://twitch.tv/reptilianin_111" target="_blank" rel="noopener noreferrer">
         <svg class="twitch-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">

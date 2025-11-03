@@ -6,67 +6,39 @@
   <title>Ogród Jaszczura</title>
   <link rel="icon" type="image/png" href="favicon.png" />
   <style>
-    :root {
-      --overlay: rgba(0,0,0,0.25);
-    }
+    :root { --overlay: rgba(0,0,0,0.25); }
     html, body {
-      height: 100%;
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      height: 100%; margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial;
     }
     .bg {
-      position: fixed;
-      inset: 0;
-      background-image: url('background.jpg');
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
+      position: fixed; inset: 0;
+      background: url('background.jpg') center/cover no-repeat;
       z-index: -3;
     }
     .overlay {
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
       z-index: -2;
     }
-
     .fire {
-      position: fixed;
-      bottom: 0;
-      width: 150px;
-      height: 250px;
+      position: fixed; bottom: 0;
+      width: 150px; height: 250px;
       background: radial-gradient(circle at 50% 80%, rgba(255,180,0,0.8) 0%, rgba(255,80,0,0.6) 40%, rgba(255,0,0,0.2) 70%, transparent 100%);
       filter: blur(25px);
-      animation: flameMove 2s infinite ease-in-out alternate;
-      opacity: 0.8;
-      z-index: -1;
-      pointer-events: none;
-      will-change: transform, opacity, filter;
+      animation: flameMove 2s infinite alternate ease-in-out;
+      opacity: 0.8; z-index: -1;
     }
     .fire::before, .fire::after {
       content: "";
-      position: absolute;
-      width: 100%;
-      height: 100%;
+      position: absolute; width: 100%; height: 100%;
       background: radial-gradient(circle at 50% 80%, rgba(255,220,120,0.7) 0%, rgba(255,140,0,0.5) 30%, rgba(255,0,0,0.2) 70%, transparent 100%);
-      filter: blur(40px);
-      opacity: 0.8;
-      animation: flameFlicker 1.8s infinite ease-in-out alternate;
-      will-change: transform, opacity, filter;
+      filter: blur(40px); opacity: 0.8;
+      animation: flameFlicker 1.8s infinite alternate ease-in-out;
     }
-    .fire::after {
-      animation-delay: 0.6s;
-      transform: scale(1.1);
-    }
-
-    .fire.left {
-      left: 40px;
-      transform-origin: bottom center;
-    }
-    .fire.right {
-      right: 40px;
-      transform-origin: bottom center;
-    }
+    .fire::after { animation-delay: .6s; transform: scale(1.1); }
+    .fire.left { left: 40px; }
+    .fire.right { right: 40px; }
 
     @keyframes flameMove {
       0% { transform: scaleY(1) translateY(0); }
@@ -80,42 +52,24 @@
     }
 
     .container {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      align-items: center;
-      text-align: center;
-      padding: 36px 16px;
-      box-sizing: border-box;
-      color: #fff;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh; display: flex;
+      flex-direction: column; justify-content: space-between; align-items: center;
+      padding: 36px 16px; text-align: center; color: #fff;
     }
-
     h1 {
-      margin: 0;
-      margin-top: 18px;
-      font-family: Arial, sans-serif;
-      font-weight: bold;
-      color: #fff;
+      margin: 18px 0 0;
+      font-weight: bold; color: #fff;
       font-size: clamp(28px, 6vw, 64px);
-      letter-spacing: 1px;
-      text-transform: none;
-      text-shadow: 0 0 8px rgba(255,255,255,0.8), 0 0 12px rgba(255,255,255,0.6);
-      transition: text-shadow 0.3s ease;
+      text-shadow: 0 0 8px rgba(255,255,255,0.8);
+      transition: text-shadow 0.3s;
     }
     h1:hover {
       text-shadow: 0 0 12px rgba(255,255,255,0.9), 0 0 20px rgba(255,150,0,0.8);
     }
 
-    /* 🎥 Film o połowę mniejszy */
     .video-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex: 1;
-      width: 100%;
+      display: flex; justify-content: center; align-items: center;
+      flex: 1; width: 100%;
     }
     video.center-video {
       max-width: 45%;
@@ -125,52 +79,36 @@
       backdrop-filter: blur(6px);
     }
 
-    .bottom-link {
-      margin-bottom: 18px;
-    }
+    .bottom-link { margin-bottom: 18px; }
     .twitch-link {
-      display: inline-block;
-      text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 999px;
-      font-weight: 600;
-      font-size: 18px;
+      display: inline-block; text-decoration: none;
+      padding: 12px 20px; border-radius: 999px;
       background: rgba(0,0,0,0.45);
       backdrop-filter: blur(6px);
-      color: #fff;
+      color: #fff; font-weight: 600; font-size: 18px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-      transition: transform .14s ease, box-shadow .14s ease;
+      transition: all .14s ease;
     }
     .twitch-link:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    .twitch-link:active { transform: translateY(0); }
-    .twitch-icon {
-      margin-right: 10px;
-      vertical-align: middle;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
-    }
 
     @media (max-width: 420px) {
       .twitch-link { font-size: 16px; padding: 10px 14px; }
       .fire { width: 90px; height: 160px; }
-      video.center-video { max-width: 60%; max-height: 20vh; }
+      video.center-video { max-width: 60%; max-height: 30vh; }
     }
   </style>
 </head>
 <body>
-  <div class="bg" aria-hidden="true"></div>
-  <div class="overlay" aria-hidden="true"></div>
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="fire left"></div>
+  <div class="fire right"></div>
 
-  <div class="fire left" aria-hidden="true"></div>
-  <div class="fire right" aria-hidden="true"></div>
+  <main class="container">
+    <header><h1>Ogród Jaszczura</h1></header>
 
-  <main class="container" role="main">
-    <header>
-      <h1>Ogród Jaszczura</h1>
-    </header>
-
-    <!-- 🎥 Film wyśrodkowany, o połowę mniejszy -->
     <div class="video-wrapper">
-      <video class="center-video" controls autoplay muted loop>
+      <video id="myVideo" class="center-video" autoplay muted loop playsinline>
         <source src="/video.mp4" type="video/mp4">
         Twoja przeglądarka nie obsługuje wideo HTML5.
       </video>
@@ -178,14 +116,21 @@
 
     <footer class="bottom-link">
       <a class="twitch-link" href="https://twitch.tv/reptilianin_111" target="_blank" rel="noopener noreferrer">
-        <svg class="twitch-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 3v14l3-3h3l3-3h4l4-4V3H4z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
-          <path d="M17 8v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-          <path d="M13 8v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-        </svg>
-        Oglądaj na Twitchu
+        🔥 Oglądaj na Twitchu
       </a>
     </footer>
   </main>
+
+  <script>
+    // 🎧 Odmutowanie po pierwszym kliknięciu
+    document.addEventListener('click', function() {
+      const vid = document.getElementById('myVideo');
+      if (vid && vid.muted) {
+        vid.muted = false;
+        vid.volume = 1.0;
+        vid.play();
+      }
+    }, { once: true });
+  </script>
 </body>
 </html>

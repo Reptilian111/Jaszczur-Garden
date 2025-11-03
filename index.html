@@ -6,30 +6,30 @@
   <title>Ogród Jaszczura</title>
   <link rel="icon" type="image/png" href="favicon.png" />
   <style>
-    :root{
+    :root {
       --overlay: rgba(0,0,0,0.25);
     }
-    html,body{
-      height:100%;
-      margin:0;
+    html, body {
+      height: 100%;
+      margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
-    .bg{
-      position:fixed;
-      inset:0;
+    .bg {
+      position: fixed;
+      inset: 0;
       background-image: url('background.jpg');
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
-      z-index:-3;
+      z-index: -3;
     }
-    .overlay{
-      position:fixed;
-      inset:0;
+    .overlay {
+      position: fixed;
+      inset: 0;
       background: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.35));
-      z-index:-2;
+      z-index: -2;
     }
-    
+
     .fire {
       position: fixed;
       bottom: 0;
@@ -79,22 +79,23 @@
       100% { opacity: 0.8; filter: blur(40px) brightness(0.9); }
     }
 
-    .container{
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      align-items:center;
-      text-align:center;
-      padding:36px 16px;
-      box-sizing:border-box;
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      padding: 36px 16px;
+      box-sizing: border-box;
       color: #fff;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    h1{
-      margin:0;
-      margin-top:18px;
+
+    h1 {
+      margin: 0;
+      margin-top: 18px;
       font-family: Arial, sans-serif;
       font-weight: bold;
       color: #fff;
@@ -108,44 +109,50 @@
       text-shadow: 0 0 12px rgba(255,255,255,0.9), 0 0 20px rgba(255,150,0,0.8);
     }
 
-    /* 🎥 Styl wideo */
-    .center-video {
+    /* 🎥 Styl dla filmu */
+    .video-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      width: 100%;
+    }
+    video.center-video {
       max-width: 90%;
       max-height: 70vh;
       border-radius: 16px;
-      margin: 32px 0;
       box-shadow: 0 0 30px rgba(0,0,0,0.6);
       backdrop-filter: blur(6px);
     }
 
-    .bottom-link{
-      margin-bottom:18px;
+    .bottom-link {
+      margin-bottom: 18px;
     }
-    .twitch-link{
-      display:inline-block;
-      text-decoration:none;
-      padding:12px 20px;
-      border-radius:999px;
-      font-weight:600;
-      font-size:18px;
+    .twitch-link {
+      display: inline-block;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 18px;
       background: rgba(0,0,0,0.45);
       backdrop-filter: blur(6px);
-      color:#fff;
+      color: #fff;
       box-shadow: 0 6px 18px rgba(0,0,0,0.4);
       transition: transform .14s ease, box-shadow .14s ease;
     }
-    .twitch-link:hover{ transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-    .twitch-link:active{ transform: translateY(0); }
-    .twitch-icon{
-      margin-right:10px;
-      vertical-align:middle;
+    .twitch-link:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    .twitch-link:active { transform: translateY(0); }
+    .twitch-icon {
+      margin-right: 10px;
+      vertical-align: middle;
       filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6));
     }
 
-    @media (max-width:420px){
-      .twitch-link{ font-size:16px; padding:10px 14px; }
+    @media (max-width: 420px) {
+      .twitch-link { font-size: 16px; padding: 10px 14px; }
       .fire { width: 90px; height: 160px; }
-      .center-video { max-height: 50vh; }
+      video.center-video { max-height: 50vh; }
     }
   </style>
 </head>
@@ -161,11 +168,13 @@
       <h1>Ogród Jaszczura</h1>
     </header>
 
-    <!-- 🎥 Film umieszczony na środku -->
-    <video controls autoplay muted loop class="center-video">
-      <source src="/video.mp4" type="video/mp4">
-      Twoja przeglądarka nie obsługuje wideo HTML5.
-    </video>
+    <!-- 🎥 Film na środku -->
+    <div class="video-wrapper">
+      <video class="center-video" controls autoplay muted loop>
+        <source src="/video.mp4" type="video/mp4">
+        Twoja przeglądarka nie obsługuje wideo HTML5.
+      </video>
+    </div>
 
     <footer class="bottom-link">
       <a class="twitch-link" href="https://twitch.tv/reptilianin_111" target="_blank" rel="noopener noreferrer">

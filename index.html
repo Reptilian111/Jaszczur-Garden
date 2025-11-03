@@ -109,7 +109,7 @@
       text-shadow: 0 0 12px rgba(255,255,255,0.9), 0 0 20px rgba(255,150,0,0.8);
     }
 
-    /* 🎥 Styl dla filmu */
+    /* 🎥 Film o połowę mniejszy */
     .video-wrapper {
       display: flex;
       justify-content: center;
@@ -118,8 +118,8 @@
       width: 100%;
     }
     video.center-video {
-      max-width: 90%;
-      max-height: 70vh;
+      max-width: 45%;
+      max-height: 35vh;
       border-radius: 16px;
       box-shadow: 0 0 30px rgba(0,0,0,0.6);
       backdrop-filter: blur(6px);
@@ -152,7 +152,7 @@
     @media (max-width: 420px) {
       .twitch-link { font-size: 16px; padding: 10px 14px; }
       .fire { width: 90px; height: 160px; }
-      video.center-video { max-height: 50vh; }
+      video.center-video { max-width: 80%; max-height: 30vh; }
     }
   </style>
 </head>
@@ -168,7 +168,7 @@
       <h1>Ogród Jaszczura</h1>
     </header>
 
-    <!-- 🎥 Film na środku -->
+    <!-- 🎥 Film wyśrodkowany, o połowę mniejszy -->
     <div class="video-wrapper">
       <video class="center-video" controls autoplay muted loop>
         <source src="/video.mp4" type="video/mp4">

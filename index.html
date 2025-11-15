@@ -232,6 +232,7 @@
     <button class="tab-btn" data-tab="about">O mnie</button>
     <button class="tab-btn" data-tab="schedule">Plan streamów</button>
     <button class="tab-btn" data-tab="rules">Regulamin</button>
+    <button class="tab-btn" data-tab="support">Wsparcie</button>
   </nav>
 
   <main class="container">
@@ -266,8 +267,8 @@
       },
       about: {
         title: 'O mnie',
-        body: 'Dwudziestoletni zdobywca Eurazji syn Baatura. ' +
-              'Będąc godzień możesz zostać, jeśli jesteś zjebem przepadnij na wieki wieków.'
+        body: 'Tu możesz napisać kilka zdań o sobie: kim jesteś, w co grasz, ' +
+              'jakie masz zajawki poza Twitch, czego mogą się spodziewać widzowie.'
       },
       schedule: {
         title: 'Plan streamów',
@@ -279,10 +280,16 @@
         body: 'Tutaj możesz wypisać zasady czatu: brak spamu, brak obrażania, ' +
               'szacunek dla innych widzów, brak spoilerów itd.'
       },
-      schedule: {
+      support: {
         title: 'Wsparcie',
-        body: '  ' +
-              'https://tipply.pl/@reptilianin__'
+        body:
+          'Wsparcie w odbudowe Imperium Mongolskiego.' +
+          '<br><br>' +
+          '<a href="https://tipply.pl/@reptilianin__" ' + // 🔴 PODMIEŃ TEN LINK
+          'target="_blank" rel="noopener noreferrer" ' +
+          'style="color:#ffa726; font-weight:600; text-decoration:none;">' +
+          'Kliknij tutaj, aby mnie wesprzeć' +
+          '</a>'
       }
     };
 
@@ -296,7 +303,8 @@
       const data = tabData[defaultTab];
       if (data) {
         contentTitle.textContent = data.title;
-        contentBody.textContent = data.body;
+        // używamy innerHTML, żeby linki były klikalne
+        contentBody.innerHTML = data.body;
       }
       buttons.forEach(b => {
         b.classList.toggle('active', b.dataset.tab === defaultTab);
@@ -316,7 +324,7 @@
         const data = tabData[tab];
         if (data) {
           contentTitle.textContent = data.title;
-          contentBody.textContent = data.body;
+          contentBody.innerHTML = data.body; // też innerHTML
         }
       });
     });

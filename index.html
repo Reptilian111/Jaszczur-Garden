@@ -61,11 +61,61 @@
       100% { opacity: 0.8; filter: blur(40px) brightness(0.9); }
     }
 
+    /* ===== LEWE ZAKŁADKI ===== */
+    .side-nav {
+      position: fixed;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 2;
+    }
+
+    .tab-btn {
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      cursor: pointer;
+      text-align: left;
+      white-space: nowrap;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+
+    .tab-btn:hover {
+      transform: translateX(2px);
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .tab-btn.active {
+      background: rgba(145,70,255,0.85);
+      box-shadow: 0 0 14px rgba(145,70,255,0.8);
+    }
+
+    @media (max-width: 600px) {
+      .side-nav {
+        top: auto;
+        bottom: 16px;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        background: rgba(0,0,0,0.5);
+        padding: 6px 10px;
+        border-radius: 999px;
+      }
+      .tab-btn { font-size: 12px; padding: 6px 10px; }
+    }
+
     .container {
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       padding: 36px 16px;
       text-align: center;
@@ -73,7 +123,7 @@
     }
 
     h1 {
-      margin: 18px 0 0;
+      margin: 18px 0 16px;
       font-weight: bold;
       font-size: clamp(28px, 6vw, 64px);
       text-shadow: 0 0 8px rgba(255,255,255,0.8);
@@ -85,6 +135,35 @@
                    0 0 20px rgba(255,150,0,0.8);
     }
 
+    /* BOX Z TREŚCIĄ ZAKŁADEK */
+    .content-box {
+      max-width: 520px;
+      min-height: 120px;
+      padding: 16px 20px;
+      margin-top: 8px;
+      background: rgba(0,0,0,0.55);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .content-title {
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      opacity: 0.9;
+    }
+
+    .content-body {
+      font-size: 15px;
+    }
+
+    /* LINK TWITCH NA DOLE */
     .bottom-link {
       position: absolute;
       bottom: 80px; /* ⬆️ unosi link wyżej */
@@ -128,6 +207,7 @@
       .fire { width: 90px; height: 160px; }
       .twitch-logo { width: 20px; height: 20px; }
       .bottom-link { bottom: 40px; } /* na telefonach też wyżej */
+      .content-box { max-width: 90vw; font-size: 14px; }
     }
 
   </style>
@@ -138,8 +218,25 @@
   <div class="fire left"></div>
   <div class="fire right"></div>
 
+  <!-- LEWE ZAKŁADKI -->
+  <nav class="side-nav">
+    <button class="tab-btn active" data-tab="home">Strona główna</button>
+    <button class="tab-btn" data-tab="about">O mnie</button>
+    <button class="tab-btn" data-tab="schedule">Plan streamów</button>
+    <button class="tab-btn" data-tab="rules">Regulamin</button>
+  </nav>
+
   <main class="container">
     <header><h1>Ogród Jaszczura</h1></header>
+
+    <!-- DYNAMICZNA TREŚĆ ZAKŁADEK -->
+    <section class="content-box">
+      <div class="content-title" id="content-title">Strona główna</div>
+      <div class="content-body" id="content-body">
+        Witaj w Ogrodzie Jaszczura. Wybierz zakładkę po lewej, żeby zobaczyć
+        więcej informacji o streamie, planie transmisji i zasadach czatu.
+      </div>
+    </section>
 
     <footer class="bottom-link">
       <a class="twitch-link" href="https://twitch.tv/reptilianin_111" target="_blank" rel="noopener noreferrer">
@@ -150,5 +247,52 @@
       </a>
     </footer>
   </main>
+
+  <!-- PROSTY SKRYPT DYNAMICZNY DO ZAKŁADEK -->
+  <script>
+    const tabData = {
+      home: {
+        title: 'Strona główna',
+        body: 'Witaj w Ogrodzie Jaszczura. To jest Twoja główna strona. ' +
+              'Z lewej strony masz zakładki – kliknij, aby zobaczyć różne sekcje.'
+      },
+      about: {
+        title: 'O mnie',
+        body: 'Tu możesz napisać kilka zdań o sobie: kim jesteś, w co grasz, ' +
+              'jakie masz zajawki poza Twitch, czego mogą się spodziewać widzowie.'
+      },
+      schedule: {
+        title: 'Plan streamów',
+        body: 'Tutaj wpisz w jakie dni i godziny najczęściej streamujesz. ' +
+              'Np. Pon–Pt: 20:00–23:00, weekendy: luźne streamy specjalne.'
+      },
+      rules: {
+        title: 'Regulamin',
+        body: 'Tutaj możesz wypisać zasady czatu: brak spamu, brak obrażania, ' +
+              'szacunek dla innych widzów, brak spoilerów itd.'
+      }
+    };
+
+    const buttons = document.querySelectorAll('.tab-btn');
+    const contentTitle = document.getElementById('content-title');
+    const contentBody = document.getElementById('content-body');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tab = btn.dataset.tab;
+
+        // aktywny styl
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // zmiana treści
+        const data = tabData[tab];
+        if (data) {
+          contentTitle.textContent = data.title;
+          contentBody.textContent = data.body;
+        }
+      });
+    });
+  </script>
 </body>
 </html>

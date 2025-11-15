@@ -111,13 +111,14 @@
       .tab-btn { font-size: 12px; padding: 6px 10px; }
     }
 
+    /* GŁÓWNY KONTEJNER – tytuł u góry, reszta niżej */
     .container {
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      padding: 36px 16px;
+      justify-content: flex-start; /* tytuł idzie na górę */
+      padding: 24px 16px 0;
       text-align: center;
       position: relative;
     }
@@ -135,12 +136,15 @@
                    0 0 20px rgba(255,150,0,0.8);
     }
 
-    /* BOX Z TREŚCIĄ ZAKŁADEK */
+    /* BOX Z TREŚCIĄ ZAKŁADEK – nad linkiem Twitch */
     .content-box {
+      position: absolute;
+      bottom: 130px; /* trochę nad linkiem, który jest na 80px */
+      left: 50%;
+      transform: translateX(-50%);
       max-width: 520px;
       min-height: 120px;
       padding: 16px 20px;
-      margin-top: 8px;
       background: rgba(0,0,0,0.55);
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.18);
@@ -166,7 +170,7 @@
     /* LINK TWITCH NA DOLE */
     .bottom-link {
       position: absolute;
-      bottom: 80px; /* ⬆️ unosi link wyżej */
+      bottom: 80px; /* link niżej niż box z treścią */
     }
 
     .twitch-link {
@@ -206,8 +210,12 @@
       .twitch-link { font-size: 16px; padding: 10px 14px; }
       .fire { width: 90px; height: 160px; }
       .twitch-logo { width: 20px; height: 20px; }
-      .bottom-link { bottom: 40px; } /* na telefonach też wyżej */
-      .content-box { max-width: 90vw; font-size: 14px; }
+      .bottom-link { bottom: 40px; }
+      .content-box {
+        max-width: 90vw;
+        font-size: 14px;
+        bottom: 90px; /* też nad linkiem, ale bliżej */
+      }
     }
 
   </style>
@@ -277,6 +285,20 @@
     const contentTitle = document.getElementById('content-title');
     const contentBody = document.getElementById('content-body');
 
+    // USTAWIENIE DOMYŚLNEJ ZAKŁADKI PO WEJŚCIU (Strona główna)
+    (function initDefaultTab() {
+      const defaultTab = 'home';
+      const data = tabData[defaultTab];
+      if (data) {
+        contentTitle.textContent = data.title;
+        contentBody.textContent = data.body;
+      }
+      buttons.forEach(b => {
+        b.classList.toggle('active', b.dataset.tab === defaultTab);
+      });
+    })();
+
+    // ZMIANA TREŚCI PO KLIKNIĘCIU ZAKŁADKI
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         const tab = btn.dataset.tab;
